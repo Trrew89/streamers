@@ -1,0 +1,8 @@
+.streamer-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    backdrop-filter: blur(100px);
+    z-index: 100;
+    opacity: 1;
+}

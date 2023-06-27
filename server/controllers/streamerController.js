@@ -40,19 +40,24 @@ class StreamerController {
                 return next(ApiError.badRequest('Streamer with the same name already exists'))
             }
 
-            const newStreamer = new Streamer({
-                name: name,
-                platform: platform,
-                description: description,
-            });
-            await newStreamer.save().then(function (models) {
-                console.log(models);
-                return res.json({ message: 'Created streamer successfully' });
-              })
-              .catch(function (err) {
-                console.log(err);
-              });
-            
+            // const newStreamer = new Streamer({
+            //     name: name,
+            //     platform: platform,
+            //     description: description,
+            // });
+            // await newStreamer.save().then(function (models) {
+            //     console.log(models);
+            //     return res.json({ message: 'Created streamer successfully' });
+            //   })
+            //   .catch(function (err) {
+            //     console.log(err);
+            //   }); 
+            try {
+                const streamer = await Streamer.create({name, platform, description});
+            } catch (error) {
+                return res.json(error);
+            }
+            res.json('New streamer added successfully')
             
           } catch (error) {
             next(ApiError.badRequest('Failed to create streamer'))
@@ -62,6 +67,7 @@ class StreamerController {
 
     async changeRating (req, res, next) {
         const { vote, streamerId } = req.body;
+        console.log('streamer')
         try {
             const streamer = await Streamer.findById(streamerId);
             if (vote === 'upvote') {
@@ -69,12 +75,13 @@ class StreamerController {
             } else if (vote === 'downvote') {
                 streamer.votes -= 1;
             }
+            
             await streamer.save().then(function (models) {
                 console.log(models);
                 return res.json({ message: 'You voted successfully' })
               })
               .catch(function (err) {
-                console.log(err);
+                console.log(err); 
               });;
         } catch (error) {
             next(ApiError.internal('Something went wrong with rating update'))

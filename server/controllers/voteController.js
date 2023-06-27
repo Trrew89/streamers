@@ -4,9 +4,11 @@ const Vote = require('../models/Vote')
 class VoteController {
     async create(req, res, next) {
         const { userId, vote, streamerId } = req.body;
+        console.log(userId, vote, streamerId)
         try {
             const existingVote = await Vote.findOne({ userId: userId, streamerId: streamerId });
             console.log(streamerId)
+            console.log('vote')
             if (!existingVote) {
                 const newVote = new Vote({
                     userId: userId,

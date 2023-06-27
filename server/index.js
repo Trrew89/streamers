@@ -1,12 +1,14 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const router = require('./routes/index')
+const cors = require('cors')
 const errorHandler = require('./middleware/ErrorHandlingMiddleware')
 
 const PORT = 5000
 
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 app.use('/', router)
 

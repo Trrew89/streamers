@@ -30,7 +30,8 @@ class UserController {
             if(password !==candidate.password) {
                 return next(ApiError.badRequest('Wrong password'))
             }
-            return res.json({message: email+'/'+password})
+
+            return res.json({message: candidate._id})
         } catch (error) {
             console.log(e)
             res.status(400).json({message: 'Login error'})
