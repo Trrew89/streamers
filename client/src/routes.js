@@ -1,6 +1,6 @@
 import AuthPage from "./pages/Auth/AuthPage"
 import StreamersListPage from "./pages/StreamersListPage/StreamersListPage"
-import StreamerPage from "./pages/StreamerPage"
+import StreamerPage from "./pages/StreamerPage/StreamerPage"
 
 export const authRoutes = [
     {

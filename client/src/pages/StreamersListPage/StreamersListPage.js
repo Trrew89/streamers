@@ -10,13 +10,25 @@ const StreamersListPage = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             let data = fetchAllStreamers().then(e => setStreamers(e));
-        }, 5000);
+        }, 2000);
         return () => clearInterval(interval)
     }, [])
 
     useEffect(() => {
         fetchAllStreamers().then(e => setStreamers(e))
     }, [])
+
+    // useEffect(() => {
+    //     const unsubscribe = fetchAllStreamers((data) => {
+    //         console.log(data)
+    //       setStreamers([...streamers], data);
+    //       console.log(streamers)
+    //     });
+    
+    //     return () => {
+    //       unsubscribe();
+    //     };
+    //   });
 
     const showForm = (e) => {
         e.preventDefault()

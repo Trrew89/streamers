@@ -7,7 +7,6 @@ import { voteForStreamer } from '../../http/streamersAPI';
 const StreamerItem = ({streamer}) => {
     const navigate = useNavigate()
     const token = localStorage.getItem('token');
-    console.log(token)
     return (
         <div className="streamer-item" >
             <img src={staticImage} alt={streamer.name} className="streamer-avatar" onClick={() => navigate(STREAMERS_ROUTE + streamer._id)}/>
@@ -19,7 +18,7 @@ const StreamerItem = ({streamer}) => {
             </div>
             <div className='vote'>
                 <button onClick={() =>  voteForStreamer(streamer._id,token, 'upvote') }>Upvote</button>
-                <button onClick={() => voteForStreamer(streamer._id, token, 'upvote')} >Downvote</button>
+                <button onClick={() => voteForStreamer(streamer._id, token, 'downvote')} >Downvote</button>
             </div>
         </div>
     );

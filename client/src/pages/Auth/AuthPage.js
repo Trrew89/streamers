@@ -19,11 +19,15 @@ const Auth = () => {
         let data;
         if (isLogin) {
             data = await login(email, password);
-            console.log(data)
+            console.log(data !== undefined)
+            if(data !== undefined){
+                localStorage.setItem('token', data);
+                navigate(STREAMERS_ROUTE)
+            }
         } else {
             data = await registration(email, password);
         }
-        navigate(STREAMERS_ROUTE)
+        
     } catch (e) {
         alert(e.response.data.message)
     }
