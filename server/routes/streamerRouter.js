@@ -12,9 +12,6 @@ router.all('/', function (req,res,next) {
 })
 router.get('/:id', streamerController.getOne)
 router.put('/:id/vote',  voteController.create, streamerController.changeRating)
-router.post('/', streamerController.create);
-router.get('/:id', streamerController.getOne);
-router.put('/:id/vote', voteController.create, streamerController.changeRating);
 
 module.exports = router;
 

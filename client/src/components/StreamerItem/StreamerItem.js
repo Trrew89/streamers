@@ -8,13 +8,15 @@ const StreamerItem = ({streamer}) => {
     const navigate = useNavigate()
     const token = localStorage.getItem('token');
     return (
-        <div className="streamer-item" >
-            <img src={staticImage} alt={streamer.name} className="streamer-avatar" onClick={() => navigate(STREAMERS_ROUTE + streamer._id)}/>
-            <div className="streamer-details" onClick={() => navigate(STREAMERS_ROUTE + streamer._id)}>
-                <h2 className="streamer-name"> {streamer.name} from {streamer.platform}</h2>
+        <div  className="streamer" >
+            <div  className="streamer-item" onClick={() => navigate(STREAMERS_ROUTE + streamer._id)}>
+                <img src={staticImage} alt={streamer.name} className="streamer-avatar"/>
+                <div className="streamer-details" >
+                    <h2 className="streamer-name"> {streamer.name} from {streamer.platform}</h2>
 
-                <p className="streamer-description"> {streamer.description}</p>
-                <div>Rating: {streamer.votes}</div>
+                    <p className="streamer-description"> {streamer.description}</p>
+                    <div>Rating: {streamer.votes}</div>
+                </div>
             </div>
             <div className='vote'>
                 <button onClick={() =>  voteForStreamer(streamer._id,token, 'upvote') }>Upvote</button>

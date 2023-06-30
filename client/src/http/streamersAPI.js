@@ -15,11 +15,11 @@ export const createStreamer = async (streamer) => {
 
 export const fetchAllStreamers = async () => {
     const {data} = await axios.get('http://localhost:5000/streamers')
-    return data;
+    return data
 }
 
 
-
+{/* Working with SSE instead of setInterval in React*/}
 // export const fetchAllStreamers = (callback) => {
 //     const eventSource = new EventSource('http://localhost:5000/streamers');
   
@@ -40,8 +40,7 @@ export const fetchAllStreamers = async () => {
 //   };
 
 export const fetchOneStreamer = async (streamerId) => {
-    const {data} = await axios.get(`http://localhost:5000/streamers/${streamerId}`, {streamerId})
-    console.log(data)
+    const {data} = await axios.get(`http://localhost:5000/streamers/${streamerId}`)
     return data
 }
 

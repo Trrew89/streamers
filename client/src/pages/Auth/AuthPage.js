@@ -21,11 +21,16 @@ const Auth = () => {
             data = await login(email, password);
             console.log(data !== undefined)
             if(data !== undefined){
-                localStorage.setItem('token', data);
                 navigate(STREAMERS_ROUTE)
+                localStorage.setItem('token', data); 
             }
         } else {
+            console.log(1)
             data = await registration(email, password);
+            setEmail('');
+            setPassword('')
+            navigate(LOGIN_ROUTE)
+            window.location.reload(false);
         }
         
     } catch (e) {
@@ -44,7 +49,7 @@ const Auth = () => {
         <label htmlFor="password">Password</label>
         <input type="password" placeholder="Password" id="password" onChange={e => setPassword(e.target.value)}/>
 
-        <button onClick={click}>{isLogin ? 'Log In' : 'Sign up'}</button>
+        <button onClick={(e) => {click(e)} }>{isLogin ? 'Log In' : 'Sign up'}</button>
         {isLogin ?
             <div>
                 No account? <NavLink to={REGISTRATION_ROUTE}>Registrate!</NavLink>

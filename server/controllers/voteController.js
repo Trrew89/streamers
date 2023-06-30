@@ -7,8 +7,6 @@ class VoteController {
         console.log(userId, vote, streamerId)
         try {
             const existingVote = await Vote.findOne({ userId: userId, streamerId: streamerId });
-            console.log(streamerId)
-            console.log('vote')
             if (!existingVote) {
                 const newVote = new Vote({
                     userId: userId,

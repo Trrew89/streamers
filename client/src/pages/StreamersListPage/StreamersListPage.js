@@ -7,38 +7,36 @@ import './StreamersListPage.css'
 const StreamersListPage = () => {
     const [streamers, setStreamers] = useState([]);
     const [usingForm, setUsingForm] = useState(false)
-    useEffect(() => {
-        const interval = setInterval(() => {
-            let data = fetchAllStreamers().then(e => setStreamers(e));
-        }, 2000);
-        return () => clearInterval(interval)
-    }, [])
+    const [error, setError] = useState(null)
 
     useEffect(() => {
-        fetchAllStreamers().then(e => setStreamers(e))
-    }, [])
-
-    // useEffect(() => {
-    //     const unsubscribe = fetchAllStreamers((data) => {
-    //         console.log(data)
-    //       setStreamers([...streamers], data);
-    //       console.log(streamers)
-    //     });
-    
-    //     return () => {
-    //       unsubscribe();
-    //     };
-    //   });
+        const fetchData = async () => {
+          try {
+            const data = await fetchAllStreamers();
+            setStreamers(data);
+          } catch (error) {
+            if (error.response && error.response.status === 400) {
+              setError('No streamers yet, add One');
+            } else {
+              setError('An error occurred while fetching streamers');
+            }
+          }
+        };
+        fetchData();
+        const intervalId = setInterval(fetchData, 2000);
+        return () => {
+            clearInterval(intervalId);
+          };
+      }, []);
 
     const showForm = (e) => {
         e.preventDefault()
         setUsingForm(!usingForm);
     }
-
     return (
             <div >
                 <MyButton onClick={showForm}>Add Streamer</MyButton>
-                <StreamersList streamers={streamers} usingForm={usingForm}/>
+                {error ? <div className='no-streamers'>{error}</div>: <StreamersList streamers={streamers} usingForm={usingForm}/>}
                 {usingForm ? <NewStreamerForm showForm={showForm}/> : null}
                 
             </div>

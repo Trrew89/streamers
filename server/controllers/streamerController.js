@@ -18,16 +18,14 @@ class StreamerController {
 
     async getOne (req, res, next) {
         try {
-            const {streamerId} = req.params
-            const streamer = await Streamer.findOne(streamerId)
-
+            const {id} = req.params
+            const streamer = await Streamer.findById(id)
             if(!streamer) {
                 return next(ApiError.badRequest('Streamer not found'))
             }
-
-            return res.json(streamer)
+            return res.json(streamer) 
         } catch (error) {
-            return next(ApiError.badRequest('Something went wrong'))
+            console.log(error)
         }
     }
 
@@ -39,24 +37,7 @@ class StreamerController {
             if (existingStreamer) {
                 return next(ApiError.badRequest('Streamer with the same name already exists'))
             }
-
-            // const newStreamer = new Streamer({
-            //     name: name,
-            //     platform: platform,
-            //     description: description,
-            // });
-            // await newStreamer.save().then(function (models) {
-            //     console.log(models);
-            //     return res.json({ message: 'Created streamer successfully' });
-            //   })
-            //   .catch(function (err) {
-            //     console.log(err);
-            //   }); 
-            try {
                 const streamer = await Streamer.create({name, platform, description});
-            } catch (error) {
-                return res.json(error);
-            }
             res.json('New streamer added successfully')
             
           } catch (error) {
@@ -67,7 +48,6 @@ class StreamerController {
 
     async changeRating (req, res, next) {
         const { vote, streamerId } = req.body;
-        console.log('streamer')
         try {
             const streamer = await Streamer.findById(streamerId);
             if (vote === 'upvote') {
@@ -77,7 +57,6 @@ class StreamerController {
             }
             
             await streamer.save().then(function (models) {
-                console.log(models);
                 return res.json({ message: 'You voted successfully' })
               })
               .catch(function (err) {

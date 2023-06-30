@@ -7,10 +7,22 @@ const StreamerPage = () => {
     const [streamer, setStreamer] = useState([]);
     const token = localStorage.getItem('token');
     useEffect(() => {
-         fetchOneStreamer(id)
-         .then(data => setStreamer(data))
-         .catch(error => console.log(error));
-    }, [])
+         const fetchData = () => {
+            fetchOneStreamer(id)
+            .then(data => setStreamer(data))
+            .catch(error => console.log(error));
+         }
+
+         fetchData();
+        const intervalId = setInterval(fetchData, 2000);
+        return () => {
+            clearInterval(intervalId);
+          };
+    }, [id])
+
+    useEffect(() => {
+        setId(window.location.pathname.replace('/', ''))
+    })
 
     return (
         <div className="streamer-card">
@@ -19,8 +31,8 @@ const StreamerPage = () => {
             <p className="streamer-platform">Platform: {streamer.platform}</p>
             <p className="streamer-description">{streamer.description}</p>
             <p className="streamer-votes">Votes: {streamer.votes}</p>
-            <button onClick={() =>  voteForStreamer(streamer._id, token, 'upvote') }>Upvote</button>
-            <button onClick={() => voteForStreamer(streamer._id, token, 'downvote')} >Downvote</button>
+            <button className ="vote-btn" onClick={() =>  voteForStreamer(streamer._id, token, 'upvote') }>Upvote</button>
+            <button className ="vote-btn" onClick={() => voteForStreamer(streamer._id, token, 'downvote')} >Downvote</button>
         </div>
     );
 };

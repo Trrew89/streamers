@@ -8,8 +8,6 @@ const NewStreamerForm = ({showForm}) => {
     const [streamer, setStreamer] = useState({name: '', description: '', platform: 'Twitch'})
     const platforms = ['Twitch', 'Youtube', 'Kick', 'TikTok', 'Rumble']
     const addStreamer = (e) => {
-        console.log(streamer.platform)
-        e.preventDefault()
         const newStreamer = {...streamer};
         createStreamer(newStreamer);
         setStreamer({name:'', description: '', platform: ''})
@@ -40,7 +38,7 @@ const NewStreamerForm = ({showForm}) => {
                         <option key={e} value={e}>{e}</option>)}
                 </select>
             </div>
-            <MyButton onClick={e => {addStreamer(); showForm();}}>Add Streamer</MyButton>
+            <MyButton onClick={e => {addStreamer(e); showForm();}}>Add Streamer</MyButton>
         </form>
         );
 };

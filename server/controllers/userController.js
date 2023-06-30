@@ -29,7 +29,7 @@ class UserController {
             }
             if(password !==candidate.password) {
                 return next(ApiError.badRequest('Wrong password'))
-            }
+            } 
 
             return res.json({message: candidate._id})
         } catch (error) {

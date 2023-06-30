@@ -5,3 +5,13 @@ div>.myBtn {
     left: 400px;
     top: 150px
 }
+
+.no-streamers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    font-size: 24px;
+    font-weight: bold;
+    color: #555;
+}

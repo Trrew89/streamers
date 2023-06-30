@@ -1,26 +1,37 @@
 .streamer-card {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .streamer-name {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .streamer-platform {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  
-  .streamer-description {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .streamer-votes {
-    font-size: 16px;
-  }
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 40%;
+  margin: 150px auto;
+}
+
+.streamer-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.streamer-platform {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #777;
+}
+
+.streamer-description {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.streamer-votes {
+  font-size: 18px;
+  color: #333;
+}
+.vote-btn {
+  margin-left: 30px;
+  width: 100px;
+}
