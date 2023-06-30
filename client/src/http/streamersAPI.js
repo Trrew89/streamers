@@ -23,11 +23,15 @@ export const fetchAllStreamers = async () => {
 // export const fetchAllStreamers = (callback) => {
 //     const eventSource = new EventSource('http://localhost:5000/streamers');
   
+//     eventSource.onopen = () => {
+//       console.log('SSE connection opened');
+//     };
+  
 //     eventSource.onmessage = (event) => {
-//         console.log(event)
-//     const data = JSON.parse(event.data);
-//     console.log(data)
-//     callback(data);
+//       console.log('SSE message received:', event.data);
+//       const data = JSON.parse(event.data);
+//       console.log(data);
+//       callback(data);
 //     };
   
 //     eventSource.onerror = (error) => {
@@ -38,6 +42,7 @@ export const fetchAllStreamers = async () => {
 //       eventSource.close();
 //     };
 //   };
+
 
 export const fetchOneStreamer = async (streamerId) => {
     const {data} = await axios.get(`http://localhost:5000/streamers/${streamerId}`)

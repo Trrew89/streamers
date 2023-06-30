@@ -29,6 +29,20 @@ const StreamersListPage = () => {
           };
       }, []);
 
+
+    {/* Code for SSE (doesn't work)*/}
+    //   useEffect(() => {
+    //     const data = fetchAllStreamers(() => {})
+    //     const unsubscribe = fetchAllStreamers((data) => {
+    //         console.log(data)
+    //       setStreamers(data);
+    //     });
+    
+    //     return () => {
+    //       unsubscribe();
+    //     };
+    //   }, []);
+
     const showForm = (e) => {
         e.preventDefault()
         setUsingForm(!usingForm);
