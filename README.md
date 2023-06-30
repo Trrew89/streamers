@@ -1,4 +1,3 @@
-# streamers
 
 ## Server start:
 ### 1. cd server
